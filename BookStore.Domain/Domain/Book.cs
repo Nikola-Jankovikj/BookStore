@@ -12,6 +12,8 @@ namespace BookStore.Domain.Domain
         public string Description { get; set; }
         public string Genre { get; set; }
         public double Price { get; set; }
+        public string ImageUrl { get; set; }
+        public int Rating { get; set; }
         public Guid AuthorId { get; set; }
         public virtual Author? Author { get; set; }
     }
