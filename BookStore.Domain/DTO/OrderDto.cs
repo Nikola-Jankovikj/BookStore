@@ -9,6 +9,8 @@ namespace BookStore.Domain.DTO
 {
     public class OrderDto
     {
+        public string Id { get; set; }
+        public string OwnerEmail { get; set; }
         public List<OrderBooks>? Books { get; set; }
         public double TotalPrice { get; set; }
     }
