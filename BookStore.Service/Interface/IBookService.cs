@@ -12,7 +12,7 @@ namespace BookStore.Service.Interface
         public Task<IEnumerable<Book>> GetAllBooks();
         public Task<Book> GetBookById(Guid id);
         public Task<Book> CreateBook(Book book);
-        public Task UpdateBook(Book book);
-        public Task<Book> DeleteBook(Book book);
+        public void UpdateBook(Book book);
+        public Task<Book> DeleteBook(Guid id);
     }
 }

@@ -16,5 +16,9 @@ namespace BookStore.Domain.Domain
         public int Rating { get; set; }
         public Guid AuthorId { get; set; }
         public virtual Author? Author { get; set; }
+        public Guid PublisherId { get; set; }
+        public virtual Publisher? Publisher { get; set; }
+        public virtual ICollection<ShoppingCartBooks>? BooksInShoppingCart { get; set; }
+        public virtual IEnumerable<OrderBooks>? BooksInOrder { get; set; }
     }
 }

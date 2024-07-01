@@ -10,5 +10,6 @@ namespace BookStore.Domain.Domain
     {
         public string Name { get; set; }
         public string Location { get; set; }
+        public virtual ICollection<Book>? Books { get; set; }
     }
 }

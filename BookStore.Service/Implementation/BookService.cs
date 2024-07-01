@@ -23,8 +23,9 @@ namespace BookStore.Service.Implementation
             return await _bookRepository.Insert(book);
         }
 
-        public async Task<Book> DeleteBook(Book book)
+        public async Task<Book> DeleteBook(Guid id)
         {
+            var book = await _bookRepository.Get(id);
             return await _bookRepository.Delete(book);
         }
 
@@ -38,9 +39,9 @@ namespace BookStore.Service.Implementation
             return await _bookRepository.Get(id);
         }
 
-        public async Task UpdateBook(Book book)
+        public void UpdateBook(Book book)
         {
-            await _bookRepository.Update(book);
+            _bookRepository.Update(book);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace BookStore.Repository
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Publisher> Publishers { get; set; }
-        public virtual DbSet<BookPublisher> BookPublishers { get; set; }
         public virtual DbSet<OrderBooks> OrderBooks { get; set; }
         public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public virtual DbSet<ShoppingCartBooks> ShoppingCartBooks { get; set; }
@@ -33,7 +32,6 @@ namespace BookStore.Repository
             modelBuilder.ApplyConfiguration(new OrderBooksConfiguration());
             modelBuilder.ApplyConfiguration(new ShoppingCartConfiguration());
             modelBuilder.ApplyConfiguration(new ShoppingCartBooksConfiguration());
-            modelBuilder.ApplyConfiguration(new BookPublisherConfiguration());
         }
 
     }

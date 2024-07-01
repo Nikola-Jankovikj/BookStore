@@ -32,6 +32,7 @@ namespace BookStore.Repository.Implementation
             var book = await books
                 .Where(b => b.Id == id)
                 .Include(b => b.Author)
+                .Include(b => b.Publisher)
                 .FirstAsync();
             return book;
         }
@@ -40,6 +41,7 @@ namespace BookStore.Repository.Implementation
         {
             return await books
                 .Include(b => b.Author)
+                .Include(b => b.Publisher)
                 .ToListAsync();
         }
 
@@ -50,10 +52,10 @@ namespace BookStore.Repository.Implementation
             return book;
         }
 
-        public async Task Update(Book book)
+        public void Update(Book book)
         {
             books.Update(book);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace BookStore.Repository.Interface
         public Task<IEnumerable<Book>> GetAll();
         public Task<Book> Get(Guid? id);
         public Task<Book> Insert(Book book);
-        public Task Update(Book book);
+        public void Update(Book book);
         public Task<Book> Delete(Book book);
     }
 }
