@@ -31,7 +31,9 @@ namespace BookStore.Repository.Implementation
                .Include(z => z.ShoppingCart)
                .Include("ShoppingCart.BooksInShoppingCart")
                .Include("ShoppingCart.BooksInShoppingCart.Book")
-               .SingleOrDefault(s => s.Id == id);
+			   .Include("ShoppingCart.BooksInShoppingCart.Book.Author")
+			   .Include("ShoppingCart.BooksInShoppingCart.Book.Publisher")
+			   .SingleOrDefault(s => s.Id == id);
         }
         public void Insert(BookStoreUser entity)
         {

@@ -13,6 +13,6 @@ namespace BookStore.Service.Interface
         public Task<Author> GetAuthorById(Guid id);
         public Task<Author> CreateAuthor(Author author);
         public Task<Author> UpdateAuthor(Author author);
-        public Task<Author> DeleteAuthor(Author author);
+        public Task<Author> DeleteAuthor(Guid id);
     }
 }

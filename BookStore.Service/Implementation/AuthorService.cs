@@ -23,8 +23,9 @@ namespace BookStore.Service.Implementation
             return await _authorRepository.Insert(author);
         }
 
-        public async Task<Author> DeleteAuthor(Author author)
+        public async Task<Author> DeleteAuthor(Guid id)
         {
+            var author = await _authorRepository.Get(id);
             return await _authorRepository.Delete(author);
         }
 
