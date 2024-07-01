@@ -101,6 +101,13 @@ namespace BookStore.Web.Controllers
 
         public async Task<IActionResult> AddToCart(Guid id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "ShoppingCarts");
+            }
+
             if (id == null)
             {
                 return NotFound();

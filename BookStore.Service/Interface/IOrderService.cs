@@ -1,4 +1,5 @@
 ﻿using BookStore.Domain.Domain;
+using BookStore.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace BookStore.Service.Interface
     public interface IOrderService
     {
         List<Order> GetAllOrders();
-        Order GetDetailsForOrder(Guid id);
+        List<Order> GetAllOrdersByUser(string userId);
+        OrderDto GetDetailsForOrder(Guid id);
     }
 }

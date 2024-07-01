@@ -25,6 +25,20 @@ namespace BookStore.Repository.Implementation
                 .Include(z => z.BooksInOrder)
                 .Include(z => z.Owner)
                 .Include("BooksInOrder.Book")
+                .Include("BooksInOrder.Book.Author")
+                .Include("BooksInOrder.Book.Publisher")
+                .ToList();
+        }
+
+        public List<Order> GetAllOrdersByUser(string userId)
+        {
+            return entities
+                .Where(z => z.userId == userId)
+                .Include(z => z.BooksInOrder)
+                .Include(z => z.Owner)
+                .Include("BooksInOrder.Book")
+                .Include("BooksInOrder.Book.Author")
+                .Include("BooksInOrder.Book.Publisher")
                 .ToList();
         }
 
@@ -34,6 +48,8 @@ namespace BookStore.Repository.Implementation
                 .Include(z => z.BooksInOrder)
                 .Include(z => z.Owner)
                 .Include("BooksInOrder.Book")
+                .Include("BooksInOrder.Book.Author")
+                .Include("BooksInOrder.Book.Publisher")
                 .SingleOrDefaultAsync(z => z.Id == id).Result;
         }
     }

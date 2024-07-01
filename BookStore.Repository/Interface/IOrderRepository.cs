@@ -10,6 +10,7 @@ namespace BookStore.Repository.Interface
     public interface IOrderRepository
     {
         List<Order> GetAllOrders();
+        List<Order> GetAllOrdersByUser(string userId);
         Order GetDetailsForOrder(Guid? id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BookStore.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore.Web.Controllers
 {
@@ -17,6 +18,11 @@ namespace BookStore.Web.Controllers
         public IActionResult Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null)
+            {
+                return Redirect("Identity/Account/Login");
+            }
 
             var dto = _shoppingCartService.getShoppingCartInfo(userId);
 
