@@ -1,4 +1,5 @@
-﻿using BookStore.Domain.Domain;
+﻿using BookStore.Domain;
+using BookStore.Domain.Domain;
 using BookStore.Domain.Identity;
 using BookStore.Repository.Configs;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -10,11 +11,12 @@ namespace BookStore.Repository
     {
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Publisher> Publishers { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderBooks> OrderBooks { get; set; }
         public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public virtual DbSet<ShoppingCartBooks> ShoppingCartBooks { get; set; }
+        public virtual DbSet<EmailMessage> EmailMessages { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

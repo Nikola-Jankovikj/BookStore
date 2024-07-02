@@ -1,4 +1,7 @@
-﻿@model BookStore.Domain.DTO.ShoppingCartDto
+﻿﻿@using BookStore.Domain
+﻿@using Microsoft.Extensions.Options
+@model BookStore.Domain.DTO.ShoppingCartDto
+@inject IOptions<StripeSettings> Stripe
 
 @{
     ViewData["Title"] = "Index";
@@ -10,9 +13,27 @@
 
 <div class="container">
 
+    @if (Model.TotalPrice != 0)
+    {
+        <form asp-controller="ShoppingCarts" asp-action="PayOrder" method="post">
+            <article>
+                <script src="https://checkout.stripe.com/checkout.js"
+                        class="stripe-button"
+                        data-key="@Stripe.Value.PublishableKey"
+                        data-locale="auto"
+                        data-description="Bookstore Application Payment"
+                        data-amount="@(Model.TotalPrice * 100)"
+                        data-label="Pay $@Model.TotalPrice">
+                </script>
+            </article>
+        </form>
+    }
+
+    <!--
     <div class="row-4">
         <a asp-controller="ShoppingCarts" asp-action="order" class="btn btn-info @(cartIsEmpty ? "disabled" : "")">Order now</a>
     </div>
+    -->
 
     <div class="row m-4">
         <table class="table">
