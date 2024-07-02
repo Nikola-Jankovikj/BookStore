@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Stripe;
+using BookStore.Domain.Domain;
 
 namespace BookStore.Web.Controllers
 {
@@ -10,10 +11,14 @@ namespace BookStore.Web.Controllers
     {
 
         private readonly IShoppingCartService _shoppingCartService;
+        private readonly IEmailService _emailService;
+        private readonly IUserService _userService;
 
-        public ShoppingCartsController(IShoppingCartService _shoppingCartService)
+        public ShoppingCartsController(IShoppingCartService shoppingCartService, IEmailService emailService, IUserService userService)
         {
-            this._shoppingCartService = _shoppingCartService;
+            _shoppingCartService = shoppingCartService;
+            _emailService = emailService;
+            _userService = userService;
         }
 
         public IActionResult Index()
@@ -44,9 +49,28 @@ namespace BookStore.Web.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var res = _shoppingCartService.order(userId);
+
+            if (res == true)
+            {
+                var sc = _shoppingCartService.getShoppingCartInfo(userId);
+                double price = sc.TotalPrice;
+
+                string mailTo = _userService.getUserEmail(userId);
+                string subject = "Bookstore Application Order";
+                string content = "You have successfully made an order of " + price + "$ using the Bookstore Application.";
+
+                EmailMessage emailMessage = new EmailMessage
+                {
+                    MailTo = mailTo,
+                    Subject = subject,
+                    Content = content,
+                    Status = false
+                };
+
+                _emailService.SendEmailAsync(emailMessage);
+            }
             
             return RedirectToAction("Index", "ShoppingCarts");
-
         }
 
         public IActionResult SuccessPayment()

@@ -1,4 +1,4 @@
-﻿using BookStore.Domain.Domain;
+﻿using BookStore.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BookStore.Service.Interface
 {
-    public interface IEmailService
+    public interface IUserService
     {
-        Task SendEmailAsync(EmailMessage allMails);
+        string getUserEmail(string userId);
     }
 }

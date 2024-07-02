@@ -1,5 +1,6 @@
-using BookStore.Domain;
+using BookStore.Domain.Email;
 using BookStore.Domain.Identity;
+using BookStore.Domain.Payment;
 using BookStore.Repository;
 using BookStore.Repository.Implementation;
 using BookStore.Repository.Interface;
@@ -36,6 +37,7 @@ builder.Services.AddTransient<IAuthorService, AuthorService>();
 builder.Services.AddTransient<IPublisherService, PublisherService>();
 builder.Services.AddTransient<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 

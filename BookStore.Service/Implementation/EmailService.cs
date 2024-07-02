@@ -1,4 +1,5 @@
-﻿using BookStore.Domain;
+﻿using BookStore.Domain.Domain;
+using BookStore.Domain.Email;
 using BookStore.Service.Interface;
 using MailKit.Security;
 using Microsoft.Extensions.Options;

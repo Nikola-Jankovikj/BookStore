@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Domain
+namespace BookStore.Domain.Email
 {
     public class MailSettings
     {
@@ -14,6 +14,6 @@ namespace BookStore.Domain
         public string SendersName { get; set; }
         public string SmtpUserName { get; set; }
         public string SmtpPassword { get; set; }
-        public Boolean EnableSsl { get; set; }
+        public bool EnableSsl { get; set; }
     }
 }

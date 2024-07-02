@@ -1,5 +1,4 @@
-﻿using BookStore.Domain;
-using BookStore.Domain.Domain;
+﻿using BookStore.Domain.Domain;
 using BookStore.Domain.Identity;
 using BookStore.Repository.Configs;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
