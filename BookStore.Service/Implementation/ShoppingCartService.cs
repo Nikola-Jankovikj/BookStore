@@ -93,6 +93,7 @@ namespace BookStore.Service.Implementation
                 Order order = new Order
                 {
                     Id = Guid.NewGuid(),
+                    OrderDate = DateTime.Now,
                     userId = userId,
                     Owner = loggedInUser
                 };

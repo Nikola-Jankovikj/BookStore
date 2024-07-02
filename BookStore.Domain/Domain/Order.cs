@@ -11,6 +11,7 @@ namespace BookStore.Domain.Domain
     {
         public string userId { get; set; }
         public BookStoreUser? Owner { get; set; }
+        public DateTime OrderDate { get; set; }
         public IEnumerable<OrderBooks> BooksInOrder { get; set; }
     }
 }

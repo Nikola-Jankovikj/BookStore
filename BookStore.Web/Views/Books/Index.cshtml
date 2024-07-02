@@ -22,17 +22,19 @@
         }
         <div class="col-3 m-4">
 
-            <div class="card" style="width: 18rem; height: 35rem">
+            <div class="card" style="width: 18rem; height: 40rem">
                 <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@item.Title</h5>
-                    <p class="card-text">@item.Description</p>
-                    <h6>Price: @item.Price</h6>
+                    <p class="card-text">@item.Author.Name</p>
+                    <h6>@(item.Price)$</h6>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-content-around">
                     <a asp-controller="Books" asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                    <!--
                     <a asp-controller="Books" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                     <a asp-controller="Books" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    -->
                     <a asp-controller="Books" asp-action="AddToCart" asp-route-id="@item.Id" class="btn btn-success">Add to Cart</a>
                 </div>
 

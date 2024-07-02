@@ -28,7 +28,7 @@ namespace BookStore.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name, Description")] Author author)
+        public async Task<IActionResult> Create([Bind("Name, Description, ImageUrl")] Author author)
         {
             if (ModelState.IsValid)
             {
@@ -53,7 +53,7 @@ namespace BookStore.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Guid id, [Bind("Id,Name,Description")] Author author)
+        public IActionResult Edit(Guid id, [Bind("Id,Name,Description, ImageUrl")] Author author)
         {
             if (id != author.Id)
             {

@@ -42,6 +42,7 @@ namespace BookStore.Service.Implementation
             OrderDto dto = new OrderDto
             {
                 Id = order.Id.ToString(),
+                OrderDate = order.OrderDate,
                 OwnerEmail = order.Owner.Email,
                 Books = allBooks,
                 TotalPrice = totalPrice

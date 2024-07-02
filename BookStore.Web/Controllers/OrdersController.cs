@@ -47,6 +47,7 @@ namespace BookStore.Web.Controllers
             var document = DocumentModel.Load(templatePath);
 
             document.Content.Replace("{{OrderNumber}}", order.Id);
+            document.Content.Replace("{{OrderTimestamp}}", order.OrderDate.Date.ToShortDateString() + ", " + order.OrderDate.ToShortTimeString());
             document.Content.Replace("{{OwnerEmail}}", order.OwnerEmail);
 
             StringBuilder sb = new StringBuilder();
@@ -76,7 +77,8 @@ namespace BookStore.Web.Controllers
                 IXLWorksheet worksheet = workBook.Worksheets.Add("Orders");
 
                 worksheet.Cell(1, 1).Value = "Order ID";
-                worksheet.Cell(1, 2).Value = "Owner";
+                worksheet.Cell(1, 2).Value = "Time";
+                worksheet.Cell(1, 3).Value = "Owner";
 
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var data = _orderService.GetAllOrdersByUser(userId);
@@ -85,12 +87,13 @@ namespace BookStore.Web.Controllers
                 {
                     var order = data[i];
                     worksheet.Cell(i + 2, 1).Value = order.Id.ToString();
-                    worksheet.Cell(i + 2, 2).Value = order.Owner.Email;
+                    worksheet.Cell(i + 2, 2).Value = order.OrderDate.Date.ToShortDateString() + ", " + order.OrderDate.ToShortTimeString();
+                    worksheet.Cell(i + 2, 3).Value = order.Owner.Email;
 
                     for (int j = 0; j < order.BooksInOrder.Count(); j++)
                     {
-                        worksheet.Cell(1, j + 3).Value = "Book " + (j + 1);
-                        worksheet.Cell(i + 2, j + 3).Value = "\"" + order.BooksInOrder.ElementAt(j).Book.Title + "\" by " + order.BooksInOrder.ElementAt(j).Book.Author.Name;
+                        worksheet.Cell(1, j + 4).Value = "Book " + (j + 1);
+                        worksheet.Cell(i + 2, j + 4).Value = "\"" + order.BooksInOrder.ElementAt(j).Book.Title + "\" by " + order.BooksInOrder.ElementAt(j).Book.Author.Name;
 
                     }
                 }

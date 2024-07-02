@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var imageSrc = Model.ImageUrl;
 }
 
 <h1>Details</h1>
@@ -11,6 +12,9 @@
     <h4>Author</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            <img src="@imageSrc" alt="Author image" style="max-width: 18rem; max-height: 35rem">
+        </dt>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>

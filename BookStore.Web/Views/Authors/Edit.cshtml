@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var imageSrc = Model.ImageUrl;
 }
 
 <h1>Edit</h1>
@@ -23,6 +24,12 @@
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+			<div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+				<span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <img src="imageSrc" alt="Author image" style="max-width: 18rem; max-height: 35rem">
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
