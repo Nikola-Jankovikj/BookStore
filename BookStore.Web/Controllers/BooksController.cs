@@ -39,7 +39,6 @@ namespace BookStore.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description,ImageUrl,Price,Rating,Genre,AuthorId, PublisherId")] Book book)
         {
-            /*book.Id = Guid.NewGuid();*/
             if (ModelState.IsValid)
             {
                 book.Id = Guid.NewGuid();
@@ -49,15 +48,17 @@ namespace BookStore.Web.Controllers
             return View(book);
         }
 
-        public async Task<IActionResult> Details(Guid id)
+        public IActionResult Details(Guid id)
         {
-            var book = await _bookService.GetBookById(id);
+            var book = _bookService.GetBookById(id);
             return View(book);
         }
 
         public async Task<IActionResult> Edit(Guid id)
         {
-            var book = await _bookService.GetBookById(id);
+            ViewBag.PublisherId = new SelectList(_publisherService.GetAllPublishers(), "Id", "Name");
+            ViewBag.AuthorId = new SelectList(await _authorService.GetAllAuthors(), "Id", "Name");
+            var book = _bookService.GetBookById(id);
             return View(book);
         }
 
@@ -85,9 +86,9 @@ namespace BookStore.Web.Controllers
             return View(book);
         }
 
-        public async Task<IActionResult> Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
-            var book = await _bookService.GetBookById(id);
+            var book = _bookService.GetBookById(id);
             return View(book);
         }
 
@@ -99,7 +100,7 @@ namespace BookStore.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> AddToCart(Guid id)
+        public IActionResult AddToCart(Guid id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -113,7 +114,7 @@ namespace BookStore.Web.Controllers
                 return NotFound();
             }
 
-            var book = await _bookService.GetBookById(id);
+            var book = _bookService.GetBookById(id);
 
             ShoppingCartBooks sb = new ShoppingCartBooks();
 

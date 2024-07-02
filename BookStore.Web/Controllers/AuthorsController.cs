@@ -39,15 +39,15 @@ namespace BookStore.Web.Controllers
             return View(author);
         }
 
-        public async Task<IActionResult> Details(Guid id)
+        public IActionResult Details(Guid id)
         {
-            var author = await _authorService.GetAuthorById(id);
+            var author = _authorService.GetAuthorById(id);
             return View(author);
         }
 
-        public async Task<IActionResult> Edit(Guid id)
+        public IActionResult Edit(Guid id)
         {
-            var author = await _authorService.GetAuthorById(id);
+            var author = _authorService.GetAuthorById(id);
             return View(author);
         }
 
@@ -75,9 +75,9 @@ namespace BookStore.Web.Controllers
             return View(author);
         }
 
-        public async Task<IActionResult> Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
-            var author = await _authorService.GetAuthorById(id);
+            var author = _authorService.GetAuthorById(id);
             return View(author);
         }
 

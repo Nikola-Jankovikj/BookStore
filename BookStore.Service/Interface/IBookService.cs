@@ -10,9 +10,9 @@ namespace BookStore.Service.Interface
     public interface IBookService
     {
         public Task<IEnumerable<Book>> GetAllBooks();
-        public Task<Book> GetBookById(Guid id);
+        public Book GetBookById(Guid id);
         public Task<Book> CreateBook(Book book);
         public void UpdateBook(Book book);
-        public Task<Book> DeleteBook(Guid id);
+        public void DeleteBook(Guid id);
     }
 }

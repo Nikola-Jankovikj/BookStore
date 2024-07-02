@@ -20,21 +20,18 @@ namespace BookStore.Repository.Implementation
             books = context.Set<Book>();
         }
 
-        public async Task<Book> Delete(Book book)
+        public void Delete(Book book)
         {
             books.Remove(book);
-            await _context.SaveChangesAsync();
-            return book;
+            _context.SaveChanges();
         }
 
-        public async Task<Book> Get(Guid? id)
+        public Book Get(Guid? id)
         {
-            var book = await books
-                .Where(b => b.Id == id)
-                .Include(b => b.Author)
-                .Include(b => b.Publisher)
-                .FirstAsync();
-            return book;
+            return books
+			   .Include(z => z.Author)
+			   .Include(z => z.Publisher)
+			   .SingleOrDefault(s => s.Id == id);
         }
 
         public async Task<IEnumerable<Book>> GetAll()

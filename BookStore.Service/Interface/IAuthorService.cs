@@ -10,9 +10,9 @@ namespace BookStore.Service.Interface
     public interface IAuthorService
     {
         public Task<IEnumerable<Author>> GetAllAuthors();
-        public Task<Author> GetAuthorById(Guid id);
+        public Author GetAuthorById(Guid id);
         public Task<Author> CreateAuthor(Author author);
-        public Task<Author> UpdateAuthor(Author author);
-        public Task<Author> DeleteAuthor(Guid id);
+        public void UpdateAuthor(Author author);
+        public void DeleteAuthor(Guid id);
     }
 }

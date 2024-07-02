@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BookStore.Repository.Implementation
 {
@@ -20,16 +21,17 @@ namespace BookStore.Repository.Implementation
             authors = _context.Set<Author>();
         }
 
-        public async Task<Author> Delete(Author author)
+        public void Delete(Author author)
         {
             authors.Remove(author);
-            await _context.SaveChangesAsync();
-            return author;
+            _context.SaveChanges();
         }
 
-        public async Task<Author> Get(Guid? id)
+        public Author Get(Guid? id)
         {
-            return await authors.Where(a => a.Id == id).Include(a => a.Books).FirstAsync();
+            return authors
+               .Include(z => z.Books)
+               .SingleOrDefault(s => s.Id == id);
         }
 
         public async Task<IEnumerable<Author>> GetAll()
@@ -44,11 +46,10 @@ namespace BookStore.Repository.Implementation
             return author;
         }
 
-        public async Task<Author> Update(Author author)
+        public void Update(Author author)
         {
             authors.Update(author);
-            await _context.SaveChangesAsync();
-            return author;
+            _context.SaveChanges();
         }
     }
 }

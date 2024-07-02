@@ -23,10 +23,10 @@ namespace BookStore.Service.Implementation
             return await _bookRepository.Insert(book);
         }
 
-        public async Task<Book> DeleteBook(Guid id)
+        public void DeleteBook(Guid id)
         {
-            var book = await _bookRepository.Get(id);
-            return await _bookRepository.Delete(book);
+            var book = _bookRepository.Get(id);
+            _bookRepository.Delete(book);
         }
 
         public async Task<IEnumerable<Book>> GetAllBooks()
@@ -34,9 +34,9 @@ namespace BookStore.Service.Implementation
             return await _bookRepository.GetAll();
         }
 
-        public async Task<Book> GetBookById(Guid id)
+        public Book GetBookById(Guid id)
         {
-            return await _bookRepository.Get(id);
+            return _bookRepository.Get(id);
         }
 
         public void UpdateBook(Book book)

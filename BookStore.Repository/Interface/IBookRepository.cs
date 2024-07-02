@@ -10,9 +10,9 @@ namespace BookStore.Repository.Interface
     public interface IBookRepository
     {
         public Task<IEnumerable<Book>> GetAll();
-        public Task<Book> Get(Guid? id);
+        public Book Get(Guid? id);
         public Task<Book> Insert(Book book);
         public void Update(Book book);
-        public Task<Book> Delete(Book book);
+        public void Delete(Book book);
     }
 }

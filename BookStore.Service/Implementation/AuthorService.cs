@@ -23,10 +23,10 @@ namespace BookStore.Service.Implementation
             return await _authorRepository.Insert(author);
         }
 
-        public async Task<Author> DeleteAuthor(Guid id)
+        public void DeleteAuthor(Guid id)
         {
-            var author = await _authorRepository.Get(id);
-            return await _authorRepository.Delete(author);
+            var author = _authorRepository.Get(id);
+            _authorRepository.Delete(author);
         }
 
         public async Task<IEnumerable<Author>> GetAllAuthors()
@@ -34,14 +34,14 @@ namespace BookStore.Service.Implementation
             return await _authorRepository.GetAll();
         }
 
-        public async Task<Author> GetAuthorById(Guid id)
+        public Author GetAuthorById(Guid id)
         {
-            return await _authorRepository.Get(id);
+            return _authorRepository.Get(id);
         }
 
-        public async Task<Author> UpdateAuthor(Author author)
+        public void UpdateAuthor(Author author)
         {
-            return await _authorRepository.Update(author);
+            _authorRepository.Update(author);
         }
     }
 }
