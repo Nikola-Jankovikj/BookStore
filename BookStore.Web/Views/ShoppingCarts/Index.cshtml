@@ -4,7 +4,7 @@
 @inject IOptions<StripeSettings> Stripe
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Shopping Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
     bool cartIsEmpty = Model.Books.Count == 0;
 }
@@ -33,7 +33,7 @@
     </div>
 }
 
-<div class="container rounded-3 bg-light shadow p-4">
+<div class="container rounded-3 bg-light shadow p-4 mt-3">
 	@if (cartIsEmpty)
 	{
         <div class="row">

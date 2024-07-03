@@ -1,13 +1,13 @@
 ﻿@model List<BookStore.Domain.Domain.Order>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Orders</h1>
 
-<div class="container rounded-3 bg-light shadow p-4 mt-5">
+<div class="container rounded-3 bg-light shadow p-4 mt-3">
 	@if (Model.Count() == 0)
 	{
         <div class="row">
