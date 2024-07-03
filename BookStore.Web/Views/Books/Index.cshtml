@@ -23,14 +23,14 @@
         <div class="col-3 mb-5">
 
             <div class="card shadow" style="width: 18rem; height: 40rem">
-                <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap">
+                <img class="card-img-top" src="@item.ImageUrl" style="float: left; height: 28rem; object-fit: cover;" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@item.Title</h5>
                     <p class="card-text">@item.Author.Name</p>
-                    <h6>@(item.Price)$</h6>
+                    <h6>$@(item.Price)</h6>
                 </div>
                 <div class="card-footer d-flex justify-content-around">
-                    <a asp-controller="Books" asp-action="Details" asp-route-id="@item.Id" class="btn rounded-pill buttonYellow">Details</a>
+                    <a asp-controller="Books" asp-action="Details" asp-route-id="@item.Id" class="btn rounded-pill buttonYellow stretched-link">Details</a>
                     <a asp-controller="Books" asp-action="AddToCart" asp-route-id="@item.Id" class="btn rounded-pill buttonBrown">Add to Cart</a>
                 </div>
 
