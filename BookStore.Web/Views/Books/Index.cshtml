@@ -22,9 +22,9 @@
         }
         <div class="col-3 mb-5">
 
-            <div class="card shadow" style="width: 18rem;">
-                <a  asp-controller="Books" asp-action="Details" asp-route-id="@item.Id" class="px-0 py-0 mx-0 my-0" style="text-decoration: none; color: black;">
-                    <img class="card-img-top mb-3" src="@item.ImageUrl" style="float: left; height: 28rem; object-fit: cover;" alt="Card image cap">
+            <div class="card shadow" style="width: 17rem;">
+                <a  asp-controller="Books" asp-action="Details" asp-route-id="@item.Id" class="px-0 py-0 mx-0 my-0 text-dark" style="text-decoration: none;">
+                    <img class="card-img-top mb-3" src="@item.ImageUrl" style="float: left; height: 25rem; object-fit: cover;" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">@item.Title</h5>
                         <p class="card-text">@item.Author.Name</p>
