@@ -40,7 +40,7 @@ namespace BookStore.Service.Implementation
             var userShoppingCart = loggedInUser.ShoppingCart;
 
             if (userShoppingCart.BooksInShoppingCart == null)
-                userShoppingCart.BooksInShoppingCart = new List<ShoppingCartBooks>(); ;
+                userShoppingCart.BooksInShoppingCart = new List<ShoppingCartBooks>();
 
             userShoppingCart.BooksInShoppingCart.Add(model);
             _shoppingCartRepository.Update(userShoppingCart);

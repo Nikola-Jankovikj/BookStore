@@ -7,32 +7,31 @@
 
 <h1>Orders</h1>
 
-<div class="container">
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    Order ID
-                </th>
-                <th>
-                    Order time
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Count() == 0)
-            {
+<div class="container rounded-3 bg-light shadow p-4 mt-5">
+	@if (Model.Count() == 0)
+	{
+        <div class="row">
+            <h4 class="fst-italic d-flex justify-content-center">No orders made.</h4>
+        </div>
+	}
+	else
+	{
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td colspan="5">No orders made.</td>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Order ID
+                    </th>
+                    <th>
+                        Order time
+                    </th>
+                    <th></th>
                 </tr>
-            }
-            else
-            {
+            </thead>
+            <tbody>
                 @for (int i = 0; i < Model.Count(); i++)
                 {
                     var item = Model[i];
@@ -44,21 +43,42 @@
                         <td>
                             @(item.OrderDate.Date.ToShortDateString()), @(item.OrderDate.ToShortTimeString())
                         </td>
-                        <td>
-                            <a asp-controller="Orders" asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
-                            <a asp-action="CreateInvoice" asp-route-id="@item.Id" class="btn btn-success">Create Invoice</a>
+                        <td class="d-flex justify-content-end">
+                            <a asp-controller="Orders" asp-action="Details" asp-route-id="@item.Id" class="btn rounded-pill buttonYellow me-2">Details</a>
+                            <a asp-action="CreateInvoice" asp-route-id="@item.Id" class="btn rounded-pill buttonBrown">Export</a>
                         </td>
                     </tr>
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    @if (Model.Count() > 0)
-    {
         <div class="row">
-            <a asp-controller="Orders" asp-action="ExportAllOrders" class="btn btn-info">Export Orders</a>
+            <a asp-controller="Orders" asp-action="ExportAllOrders" class="btn buttonYellow w-100">Export All Orders</a>
         </div>
+	}
+</div>
+
+
+<style>
+    .buttonBrown {
+        background-color: #A24B00;
+        color: white;
+        width: 7rem;
     }
 
-</div>
+    .buttonBrown:hover {
+        background-color: #7B3200;
+        color: white;
+    }
+
+    .buttonYellow {
+        background-color: #E8AD21;
+        color: white;
+        width: 7rem;
+    }
+
+    .buttonYellow:hover {
+        background-color: #B97E09;
+        color: white;
+    }
+</style>
