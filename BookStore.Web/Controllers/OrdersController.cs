@@ -100,6 +100,8 @@ namespace BookStore.Web.Controllers
                     }
                 }
 
+                worksheet.Columns().AdjustToContents();
+
                 using (var stream = new MemoryStream())
                 {
                     workBook.SaveAs(stream);
