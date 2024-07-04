@@ -27,6 +27,7 @@ namespace BookStore.Repository.Implementation
                 .Include("BooksInOrder.Book")
                 .Include("BooksInOrder.Book.Author")
                 .Include("BooksInOrder.Book.Publisher")
+                .OrderByDescending(o => o.OrderDate)
                 .ToList();
         }
 
@@ -39,6 +40,7 @@ namespace BookStore.Repository.Implementation
                 .Include("BooksInOrder.Book")
                 .Include("BooksInOrder.Book.Author")
                 .Include("BooksInOrder.Book.Publisher")
+                .OrderByDescending(o => o.OrderDate)
                 .ToList();
         }
 
