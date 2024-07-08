@@ -4,6 +4,7 @@ using BookStore.Domain.Payment;
 using BookStore.Repository;
 using BookStore.Repository.Implementation;
 using BookStore.Repository.Interface;
+using BookStore.Service;
 using BookStore.Service.Implementation;
 using BookStore.Service.Interface;
 using Microsoft.AspNetCore.Identity;
@@ -29,6 +30,7 @@ builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IBackgroundEmailSender, BackgorundWorker>();
 
 builder.Services.AddTransient<IEmailService, EmailService>();
 
@@ -38,6 +40,8 @@ builder.Services.AddTransient<IPublisherService, PublisherService>();
 builder.Services.AddTransient<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IUserService, UserService>();
+
+builder.Services.AddHostedService<ConsumeScopedHostedService>();
 
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 

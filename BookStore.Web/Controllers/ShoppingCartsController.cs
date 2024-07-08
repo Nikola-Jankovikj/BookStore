@@ -47,12 +47,11 @@ namespace BookStore.Web.Controllers
         public IActionResult Order()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
+            var sc = _shoppingCartService.getShoppingCartInfo(userId);
             var res = _shoppingCartService.order(userId);
 
             if (res == true)
             {
-                var sc = _shoppingCartService.getShoppingCartInfo(userId);
                 double price = sc.TotalPrice;
 
                 string mailTo = _userService.getUserEmail(userId);
@@ -67,7 +66,9 @@ namespace BookStore.Web.Controllers
                     Status = false
                 };
 
-                _emailService.SendEmailAsync(emailMessage);
+                List<EmailMessage> messages = new List<EmailMessage> { emailMessage };
+
+                _emailService.SendEmailAsync(messages);
             }
             
             return RedirectToAction("Index", "ShoppingCarts");

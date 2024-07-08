@@ -7,6 +7,7 @@ using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,25 +23,32 @@ namespace BookStore.Service.Implementation
             _mailSettings = mailSettings.Value;
         }
 
-        public async Task SendEmailAsync(EmailMessage allMails)
+        public async Task SendEmailAsync(List<EmailMessage> allMails)
         {
-            var emailMessage = new MimeMessage
+            List<MimeMessage> messages = new List<MimeMessage>();
+
+            foreach(var item in allMails)
             {
-                Sender = new MailboxAddress("Bookstore Application", "integrated_systems_finki@outlook.com"),
-                Subject = allMails.Subject
-            };
+                var emailMessage = new MimeMessage
+                {
+                    Sender = new MailboxAddress("Bookstore Application", "0c00d7cb2dcfd7"),
+                    Subject = item.Subject
+                };
 
-            emailMessage.From.Add(new MailboxAddress("Bookstore Application", "integrated_systems_finki@outlook.com"));
+                emailMessage.From.Add(new MailboxAddress("Bookstore Application", "0c00d7cb2dcfd7"));
 
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Plain) { Text = allMails.Content };
+                emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Plain) { Text = item.Content };
 
-            emailMessage.To.Add(new MailboxAddress(allMails.MailTo, allMails.MailTo));
+                emailMessage.To.Add(new MailboxAddress(item.MailTo, item.MailTo));
+
+                messages.Add(emailMessage);
+            }
 
             try
             {
                 using (var smtp = new MailKit.Net.Smtp.SmtpClient())
                 {
-                    var socketOptions = SecureSocketOptions.Auto;
+                    var socketOptions = SecureSocketOptions.Auto; 
 
                     await smtp.ConnectAsync(_mailSettings.SmtpServer, 587, socketOptions);
 
@@ -48,11 +56,15 @@ namespace BookStore.Service.Implementation
                     {
                         await smtp.AuthenticateAsync(_mailSettings.SmtpUserName, _mailSettings.SmtpPassword);
                     }
-                    await smtp.SendAsync(emailMessage);
 
+                    foreach (var item in messages)
+                    {
+                        await smtp.SendAsync(item);
+                    }
 
                     await smtp.DisconnectAsync(true);
                 }
+               
             }
             catch (SmtpException ex)
             {
