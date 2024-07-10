@@ -39,6 +39,7 @@ namespace BookStore.Web.Controllers
             return View(order);
         }
 
+<<<<<<< HEAD
         [HttpGet]
         public FileContentResult CreateInvoice(Guid id)
         {
@@ -95,6 +96,8 @@ namespace BookStore.Web.Controllers
 
         }
 
+=======
+>>>>>>> f5c7a60... removed single export
         [HttpGet]
         public FileContentResult ExportAllOrders()
         {
