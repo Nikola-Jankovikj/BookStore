@@ -1,0 +1,46 @@
+﻿@model List<BookStore.Domain.DTO.DonationDto>
+
+@{
+    ViewData["Title"] = "Donations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Donations</h1>
+
+<div class="container rounded-3 bg-light shadow p-4">
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>
+					#
+				</th>
+				<th>
+					Amount
+				</th>
+				<th>
+					Donation Date
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@for (int i = 0; i < Model.Count(); i++)
+			{
+				var item = Model[i];
+				<tr>
+					<td>@(i + 1)</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Amount)
+					</td>
+
+					<td>
+						@Html.DisplayFor(modelItem => item.DonationDate)
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+
+</div>
